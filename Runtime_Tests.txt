@@ -1,0 +1,113 @@
+
+12:10:24 up 88 days,  1:28, 10 users,  load average: 0.18, 0.25, 0.32
+
+sortSeq
+
+
+runtime: 1 seconds, 661637 microseconds
+sortSeq
+runtime: 1 seconds, 687236 microseconds
+sortSeq
+runtime: 1 seconds, 681411 microseconds
+ echo "                                                                                                                                                                                                                                                                                                                         "
+
+ uptime
+12:11:38 up 88 days,  1:30, 10 users,  load average: 0.99, 0.49, 0.40
+sortProcess 1
+runtime: 1 seconds, 686516 microseconds
+sortProcess 1
+runtime: 1 seconds, 692686 microseconds
+sortProcess 1
+runtime: 1 seconds, 690566 microseconds
+ echo "                                                                                                                                                                                                                                                                                                                         "
+
+ uptime
+12:12:44 up 88 days,  1:31, 10 users,  load average: 1.25, 0.67, 0.47
+sortProcess 2
+runtime: 1 seconds, 49729 microseconds
+sortProcess 2
+runtime: 1 seconds, 50012 microseconds
+sortProcess 2
+runtime: 1 seconds, 46544 microseconds
+ echo "                                                                                                                                                                                                                                                                                                                         "
+
+ uptime
+12:13:38 up 88 days,  1:32, 10 users,  load average: 1.44, 0.82, 0.53
+sortProcess 4
+runtime: 0 seconds, 707664 microseconds
+sortProcess 4
+runtime: 0 seconds, 712004 microseconds
+sortProcess 4
+runtime: 0 seconds, 706845 microseconds
+ echo "                                                                                                                                                                                                                                                                                                                         "
+
+ uptime
+12:14:25 up 88 days,  1:32, 10 users,  load average: 1.46, 0.92, 0.58
+sortProcess 8
+runtime: 0 seconds, 624254 microseconds
+sortProcess 8
+runtime: 0 seconds, 629516 microseconds
+sortProcess 8
+runtime: 0 seconds, 623201 microseconds
+ echo "                                                                                                                                                                                                                                                                                                                         "
+
+ uptime
+12:15:16 up 88 days,  1:33, 10 users,  load average: 1.50, 1.01, 0.63
+sortProcess 16
+runtime: 0 seconds, 615554 microseconds
+sortProcess 16
+runtime: 0 seconds, 610634 microseconds
+sortProcess 16
+runtime: 0 seconds, 622748 microseconds
+ echo "                                                                                                                                                                                                                                                                                                                         "
+
+ uptime
+12:16:40 up 88 days,  1:35, 10 users,  load average: 1.62, 1.23, 0.74
+sortThread 1
+runtime: 1 seconds, 676907 microseconds
+sortThread 1
+runtime: 1 seconds, 697207 microseconds
+sortThread 1
+runtime: 1 seconds, 679317 microseconds
+ echo "                                                                                                                                                                                                                                                                                                                         "
+                                                                                                                                                                                                                                                                                                            "
+
+ uptime
+12:20:33 up 88 days,  1:39, 10 users,  load average: 0.59, 1.06, 0.79
+sortThread 2
+runtime: 1 seconds, 12998 microseconds
+sortThread 2
+runtime: 1 seconds, 12153 microseconds
+sortThread 2
+runtime: 1 seconds, 10184 microseconds
+ echo "                                                                                                                                                                                                                                                                                                                         "
+
+ uptime
+12:21:38 up 88 days,  1:40, 10 users,  load average: 0.61, 0.98, 0.78
+sortThread 4
+runtime: 0 seconds, 604149 microseconds
+sortThread 4
+runtime: 0 seconds, 628204 microseconds
+sortThread 4
+runtime: 0 seconds, 622980 microseconds
+ echo "                                                                                                                                                                                                                                                                                                                         "
+
+ uptime
+12:22:21 up 88 days,  1:40, 10 users,  load average: 0.60, 0.92, 0.77
+sortThread 8
+runtime: 0 seconds, 495214 microseconds
+sortThread 8
+runtime: 0 seconds, 496226 microseconds
+sortThread 8
+runtime: 0 seconds, 502153 microseconds
+ echo "                                                                                                                                                                                                                                                                                                                         "
+
+ uptime
+12:23:13 up 88 days,  1:41, 10 users,  load average: 0.61, 0.88, 0.76
+sortThread 16
+runtime: 0 seconds, 510655 microseconds
+sortThread 16
+runtime: 0 seconds, 511771 microseconds
+sortThread 16
+runtime: 0 seconds, 509377 microseconds
+carljohnson@c

@@ -9,7 +9,7 @@ sortProcess: sortProcess.c
 	gcc ${CFLAGS} -o sortProcess sortProcess.c
 
 sortThread: sortThread.c
-	gcc ${CFLAGS} -o sortThread sortThread.c
+	gcc ${CFLAGS} -o sortThread sortThread.c -lpthread
 
 clean:
 	rm -f sortSeq sortProcess sortThread

@@ -1,0 +1,252 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amsthm,amssymb, changepage,courier, textcomp}
+
+\setlength{\topmargin}{0.00in}
+\setlength{\textheight}{8.75in}
+\setlength{\textwidth}{6.625in}
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\evensidemargin}{0.0in}
+
+\setlength{\parindent}{0.0cm}
+\frenchspacing
+
+\newenvironment{indented}{\begin{adjustwidth}{0.9cm}{2.0cm}}{\end{adjustwidth}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\begin{document}
+\pagestyle{plain}
+
+Carl Johnson\\
+Homework 1: Answers\\
+CSc 422\\
+Patrick Homer\\
+31 January 2018
+
+\begin{center}
+\textbf{Homework 1}
+\end{center}
+
+\begin{enumerate}
+\item [1.] 
+
+	\begin{enumerate}
+	\item[a)] \hspace{0.8cm}In order for the program to terminate, the while condition in the first arm (\code{x != y}) has to fail once and the await condition in the second arm (\code{x == y}) has to pass once.\\
+	\hspace{0.8cm}To the best of my knowledge, there are four scenarios by which this can happen, labeled scenarios A, B, C and D below.\\
+	
+	Termination Scenario A: \\
+	
+	\begin{tabular}{c |c | l | c | c }
+		Step & Arm & Instruction	&	\code{x}	&  \code{y}	\\
+		\hline
+		1 	& 1 & \code{x != y} $\equiv$ T	&	10	&	0\\
+		2 	& 1 & \code{x = x - 1}			&	9	&	$|$\\
+		3 	& 1 & \code{y = y + 1}			&	$|$	&	1\\
+		4 	& 1 & \code{x != y} $\equiv$ T	&	9	&	1\\
+		5 	& 1 & \code{x = x - 1}			&	8	&	$|$\\
+		6 	& 1 & \code{y = y + 1}			&	$|$	&	2\\
+		7 	& 1 & \code{x != y} $\equiv$ T	&	8	&	2\\
+		8 	& 1 & \code{x = x - 1}			&	7	&	$|$\\
+		9 	& 1 & \code{y = y + 1}			&	$|$	&	3\\
+		10 	& 1 & \code{x != y} $\equiv$ T	&	7	&	3\\
+		
+		\end{tabular}\hspace{0.8cm}
+	\begin{tabular}{c |c | l | c | c }
+		Step & Arm & Instruction	&	\code{x}	&  \code{y}	\\
+		\hline
+		11 	& 1 & \code{x = x - 1}			&	6	&	$|$\\
+		12	& 1 & \code{y = y + 1}			&	$|$	&	4\\
+		13 	& 1 & \code{x != y} $\equiv$ T	&	6	&	4\\
+		14 	& 1 & \code{x = x - 1}			&	5	&	$|$\\
+		15 	& 1 & \code{y = y + 1}			&	$|$	&	5\\
+		16 	& 1 & \code{x != y} $\equiv$ F	&	5	&	5\\
+		17 	& 2 & \code{x == y} $\equiv$ T	&	5	&	5\\
+		18 	& 2 & \code{x = 8}				&	8	&	$|$\\
+		19 	& 2 & \code{y = 2}				&	8	&	2\\
+		&&&&\\
+		
+		
+	\end{tabular}\\
+	
+		
+	\hspace{0.8cm}Following the 5th iteration of the while loop in the first arm (steps 1 - 15),\\
+	\code{x} = 5 and \code{y} = 5. If the while condition in the first arm (\code{x != y}) is checked either immediately before or immediately after (steps 16 and 17 can be swapped with no change in outcome) the await condition in the second arm (\code{x == y}) is checked, then the while loop in the first arm will terminate, allowing the code in the body of the second arm to execute, leaving us with \\
+	\textbf{\code{x} = 8 and \code{y} = 2}\\
+	
+	Termination Scenario B: \\
+	(NOTE: Steps 1 - 15 are identical to the tables in scenario A, so they were left out.)\\
+	
+	\begin{tabular}{c |c | l | c | c }
+		Step & Arm & Instruction	&	\code{x}	&  \code{y}	\\
+		\hline
+		- 	& - & \ldots & & \\
+		16 	& 2 & \code{x == y} $\equiv$ T	&	5	&	5\\
+		17 	& 2 & \code{x = 8}				&	8	&	$|$\\
+		18 	& 2 & \code{y = 2}				&	$|$	&	2\\
+		19 	& 1 & \code{x != y} $\equiv$ T	&	8	&	2\\
+		20 	& 1 & \code{x = x - 1}			&	7	&	$|$\\
+		21 	& 1 & \code{y = y + 1}			&	$|$	&	3\\
+		
+		
+	\end{tabular}\hspace{0.8cm}
+	\begin{tabular}{c |c | l | c | c }
+		Step & Arm & Instruction	&	\code{x}	&  \code{y}	\\
+		\hline
+		22 	& 1 & \code{x != y} $\equiv$ T	&	7	&	3\\
+		23 	& 1 & \code{x = x - 1}			&	6	&	$|$\\
+		24 	& 1 & \code{y = y + 1}			&	$|$	&	4\\
+		25 	& 1 & \code{x != y} $\equiv$ T	&	6	&	4\\
+		26 	& 1 & \code{x = x - 1}			&	5	&	$|$\\
+		27 	& 1 & \code{y = y + 1}			&	$|$	&	5\\
+		28 	& 1 & \code{x != y} $\equiv$ F	&	5	&	5\\
+		
+	\end{tabular}\\
+	
+	\newpage
+	
+	\hspace{0.8cm}Following the 5th iteration of the while loop in the first arm (steps 1 - 15),\\
+	\code{x} = 5 and \code{y} = 5. If the await condition in the second arm (\code{x == y}) is checked and all the code in the body runs (steps 16 - 18) before the while condition in the first arm (\code{x != y}) is checked again (step 19), then we will have \code{x} = 8 and \code{y} = 2. The while condition in the first arm (\code{x != y}) will still be true, and the while loop will run for three more iterations before\\ 
+	\textbf{\code{x} = 5 and \code{y} = 5}, \\
+	causing the while loop to terminate.\\
+	
+	Termination Scenario C: \\
+	(NOTE: Steps 1 - 15 are identical to the tables in scenario A, so they were left out.)\\
+	
+	\begin{tabular}{c |c | l | c | c }
+		Step & Arm & Instruction	&	\code{x}	&  \code{y}	\\
+		\hline
+		- 	& - & \ldots & & \\
+		16 	& 2 & \code{x == y} $\equiv$ T	&	5	&	5\\
+		17 	& 2 & \code{x = 8}				&	8	&	$|$\\
+		18 	& 1 & \code{x != y} $\equiv$ T	&	8	&	5\\
+		19 	& 1 & \code{x = x - 1}			&	7	&	$|$\\
+		20 	& 2 & \code{y = 2}				&	$|$	&	2\\
+		21 	& 1 & \code{y = y + 1}			&	$|$	&	3\\
+		\end{tabular}\hspace{0.8cm}
+	\begin{tabular}{c |c | l | c | c }
+		Step & Arm & Instruction	&	\code{x}	&  \code{y}	\\
+		\hline
+		22 	& 1 & \code{x != y} $\equiv$ T	&	7	&	3\\
+		23 	& 1 & \code{x = x - 1}			&	6	&	$|$\\
+		24 	& 1 & \code{y = y + 1}			&	$|$	&	4\\
+		25 	& 1 & \code{x != y} $\equiv$ T	&	6	&	4\\
+		26 	& 1 & \code{x = x - 1}			&	5	&	$|$\\
+		27 	& 1 & \code{y = y + 1}			&	$|$	&	5\\
+		28 	& 1 & \code{x != y} $\equiv$ F	&	5	&	5\\
+		
+	\end{tabular}\\
+	
+	\hspace{0.8cm}Following the 5th iteration of the while loop in the first arm (steps 1 - 15),\\
+	\code{x} = 5 and \code{y} = 5. if the await condition in the second arm (\code{x == y}) is checked and only the first instruction in its body (\code{x = 8}) runs before while condition in the first arm (\code{x != y}) is checked, then we will have \code{x} = 8 and \code{y} = 5. The while condition in the first arm (\code{x != y}) will still be true. If the second instruction in arm 2 runs immediately after the \code{x = x + 1} instruction on the next iteration of the loop in arm 1, then  we are left with \code{x} = 7 and \code{y} = 3 going into the next iteration. Following the next two iterations of the while loop in arm 1, we now have \\ 
+	\textbf{\code{x} = 5 and \code{y} = 5}, \\
+	causing the while loop to terminate.\\
+	
+	Termination Scenario D: \\
+	(NOTE: Steps 1 - 15 are identical to the tables in scenario A, so they were left out.)\\
+	
+	\begin{tabular}{c |c | l | c | c }
+		Step & Arm & Instruction	&	\code{x}	&  \code{y}	\\
+		\hline
+		- 	& - & \ldots & & \\
+		16 	& 2 & \code{x == y} $\equiv$ T	&	5	&	5\\
+		17 	& 2 & \code{x = 8}				&	8	&	$|$\\
+		18 	& 1 & \code{x != y} $\equiv$ T	&	8	&	5\\
+		19 	& 1 & \code{x = x - 1}			&	7	&	$|$\\
+		20 	& 1 & \code{y = y + 1}			&	$|$	&	6\\
+		21 	& 1 & \code{x != y} $\equiv$ T	&	7	&	6\\
+		22 	& 1 & \code{x = x - 1}			&	6	&	$|$\\
+		23 	& 1 & \code{y = y + 1}			&	$|$	&	5\\
+		\end{tabular}\hspace{0.8cm}
+	\begin{tabular}{c |c | l | c | c }
+		Step & Arm & Instruction	&	\code{x}	&  \code{y}	\\
+		\hline
+		24 	& 2 & \code{y = 2}				&	$|$	&	2\\
+		25 	& 1 & \code{x != y} $\equiv$ T	&	6	&	2\\
+		26 	& 1 & \code{x = x - 1}			&	5	&	$|$\\
+		27 	& 1 & \code{y = y + 1}			&	$|$	&	3\\
+		28 	& 1 & \code{x != y} $\equiv$ T	&	5	&	3\\
+		29 	& 1 & \code{x = x - 1}			&	4	&	$|$\\
+		30 	& 1 & \code{y = y + 1}			&	$|$	&	4\\
+		31 	& 1 & \code{x != y} $\equiv$ F	&	4	&	4\\
+		&&&&\\
+		
+	\end{tabular}\\
+	
+	\hspace{0.8cm}Following the 5th iteration of the while loop in the first arm (steps 1 - 15),\\
+	\code{x} = 5 and \code{y} = 5. if the await condition in the second arm (\code{x == y}) is checked and only the first instruction in its body (\code{x = 8}) runs before while condition in the first arm (\code{x != y}) is checked, then we will have \code{x} = 8 and \code{y} = 5. The while condition in the first arm (\code{x != y}) will still be true. If the second instruction in arm 2 runs immediately after two more full iterations of the while loop in arm 1, then  we are left with \code{x} = 6 and \code{y} = 2 going into the next iteration. Following the next two iterations of the while loop in arm 1, we now have \\ 
+	\textbf{\code{x} = 4 and \code{y} = 4}, \\
+	causing the while loop to terminate.\\
+	
+	\item[b)] \hspace{0.8cm}Yes, there are circumstances where the program does not terminate. If it becomes the case that \code{x} $>$ \code{y} before the while condition in the first arm (\code{x != y}) is ever evaluated as false, then the while loop will run infinitely.
+	
+	\hspace{0.8cm}As \code{x}$\to -\infty$ and \code{y}$\to \infty$, the ranges of  \code{x} and  \code{y} values from that point forward are entirely disjoint from one another.\\
+	\hspace{0.8cm}Here is an example:\\
+	
+	Infinite loop scencario: \\
+	(NOTE: Steps 1 - 15 are identical to the tables in part (a) scenario A, so they were left out.)\\
+	
+	\begin{tabular}{c |c | l | c | c }
+		Step & Arm & Instruction	&	\code{x}	&  \code{y}	\\
+		\hline
+		- 	& - & \ldots & & \\
+		16 	& 2 & \code{x == y} $\equiv$ T	&	5	&	5\\
+		17 	& 2 & \code{x = 8}				&	8	&	$|$\\
+		18 	& 1 & \code{x != y} $\equiv$ T	&	8	&	5\\
+		19 	& 1 & \code{x = x - 1}			&	7	&	$|$\\
+		20 	& 1 & \code{y = y + 1}			&	$|$	&	6\\
+		21 	& 2 & \code{y = 2}				&	$|$	&	2\\
+		22 	& 1 & \code{x != y} $\equiv$ T	&	7	&	2\\
+		23 	& 1 & \code{x = x - 1}			&	6	&	$|$\\
+		\end{tabular}\hspace{0.8cm}
+	\begin{tabular}{c |c | l | c | c }
+		Step & Arm & Instruction	&	\code{x}	&  \code{y}	\\
+		\hline
+		24 	& 1 & \code{y = y + 1}			&	$|$	&	3\\
+		25 	& 1 & \code{x != y} $\equiv$ T	&	6	&	3\\
+		26 	& 1 & \code{x = x - 1}			&	5	&	$|$\\
+		27 	& 1 & \code{y = y + 1}			&	$|$	&	4\\
+		28 	& 1 & \code{x != y} $\equiv$ T	&	5	&	4\\
+		29 	& 1 & \code{x = x - 1}			&	4	&	$|$\\
+		30 	& 1 & \code{y = y + 1}			&	$|$	&	5\\
+		31 	& 1 & \code{x != y} $\equiv$ T	&	4	&	5\\
+		- 	& -	& \ldots & &\\
+		
+	\end{tabular}\\
+	
+	\hspace{0.8cm} Following the 5th iteration of the while loop in the first arm (steps 1 - 15),\\
+	\code{x} = 5 and \code{y} = 5. if the await condition in the second arm (\code{x == y}) is checked and only the first instruction in its body (\code{x = 8}) runs before while condition in the first arm (\code{x != y}) is checked, then we will have \code{x} = 8 and \code{y} = 5. The while condition in the first arm (\code{x != y}) will still be true. If the second instruction in arm 2 runs immediately after the next full iteration of the while loop in arm 1, then  we are left with \code{x} = 7 and \code{y} = 2 going into the next iteration. Following the next three iterations of the while loop in arm 1, we now have \\ 
+	\textbf{\code{x} = 4 and \code{y} = 5} \\
+	Since arm 2 has completed its instructions, \code{x} only decreases and \code{y} only increases from this point forward. Therefore, the condition \code{x != y} will always be true, causing an infinite loop.\\
+
+
+	
+	\end{enumerate}
+	
+\newpage
+
+\item [2.] 
+
+	\begin{enumerate}
+	\item[a)] $(\forall i : 1 < i < m \text{ } (\forall j : 1 < j < n : a[i] < b[j]))$ 
+	
+	\item[c)] $\lnot ((\exists i :  1 < i < m : a[i] = 0) \land (\exists j :  1 < j < n : b[j] = 0))$
+	
+	\item[e)] $(\forall i : 1 < i < m \text{ } (\exists j : 1 < j < n : a[i] = b[j]))$ 
+	
+	\end{enumerate}
+	
+\item [3.] 
+
+	\begin{enumerate}
+	\item[a)] \hspace{0.8cm}In weakly fair scheduling, the program may or may not terminate. If the await condition (\code{x == 0}) isn't checked immediately after \code{x} is decremented to zero by the atomic code in the second arm (\code{x = x - 1}) and immediately before it is decremented again, then \code{x} will continue to decrement past zero. Even if \code{x} overflows and reaches zero more than once, the await condition (\code{x == 0}) may still not be checked at the right time, since it does not remain true when it becomes true.
+	
+	\item[b)] \hspace{0.8cm}In strongly fair scheduling, the program will terminate if \code{x} overflows and reaches zero multiple times. In this case, the the await condition (\code{x == 0}) is infinitely often true, and strongly fair scheduling must at some point check the condition while it is true. If overflow is not taken into account, than the program may or may not terminate, as strongly fair scheduling requires that the condition be infinitely often true.
+	
+	\item[c)] \hspace{0.8cm}In weakly fair scheduling, the program may or may not terminate. Just like (a) above, the await condition (\code{x == 0}) does not remain true when it becomes true, so the await condition (\code{x == 0}) may still not be checked at the right time, causing the program to never terminate.
+	
+	\item[d)] \hspace{0.8cm}In strongly fair scheduling, the program will terminate. In this scenario the await condition (\code{x == 0}) is infinitely often true, and strongly fair scheduling must at some point check the condition while it is true, causing the program to terminate.
+	
+	\end{enumerate}	
+\end{enumerate}
+
+
+\end{document}
